@@ -44,6 +44,4 @@ jobs:
       - name: Version parameters
         shell: bash
         run: |
-          echo "${{ steps.inc_ver.outputs.version }}"
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: version_parameters
+          echo "${{ steps.versioning.outputs.version }}"
