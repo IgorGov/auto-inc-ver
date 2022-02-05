@@ -47,7 +47,7 @@ This action will automatically determine the version for next release by using r
 
 ```yaml
 - name: Auto Increment Version
-    uses: docker://igorgov/auto-inc-ver:v1.1.0
+    uses: docker://igorgov/auto-inc-ver:v1.2.0
     id: versioning
     with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
