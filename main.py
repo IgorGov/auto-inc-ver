@@ -45,7 +45,7 @@ def get_params():
     for commit in data["commits"]:
         for release_type in [ReleaseTypes.MAJOR, ReleaseTypes.PATCH]:
             if f'#{release_type}' in  commit["message"]:
-                print(f'Detected hashtag #{release_type} in message overriding release type')
+                print(f'Detected hashtag #{release_type} in message, relase type: {release_type} selected')
                 return (owner, repo, token, suffix, release_type)
         
     raise ValueError(f'Could not find hashtag #{ReleaseTypes.MAJOR} nor #{ReleaseTypes.PATCH} in commit message')

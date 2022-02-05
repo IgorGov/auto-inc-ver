@@ -65,11 +65,11 @@ class Version:
             return (self.major, self.patch) < (other.major, other.patch)
     
 
-def get_most_recent_release(versions: list[Version]) -> Version:
+def get_prev_release(versions: list[Version]) -> Version:
     versions.sort()
     return versions[-1]
 
-def get_most_recent_official_release(versions: list[Version]) -> Version:
+def get_prev_official_release(versions: list[Version]) -> Version:
     major_versions = [v for v in versions if not v.is_dev()]
     major_versions.sort()
     return major_versions[-1]
@@ -91,9 +91,9 @@ def get_next_version(suffix: str, tags: list[str], release_type: str) -> Version
     if not versions:
         return Version(suffix, 0, 0, 0) if release_type == ReleaseTypes.INCREMENT else Version(suffix, 0, 0)
     if release_type == ReleaseTypes.INCREMENT:
-        last_version = get_most_recent_release(versions)
+        prev_version = get_prev_release(versions)
     else:   
-        last_version = get_most_recent_official_release(versions)
-    print(f'most recent release version {last_version}')
-    next_version = get_next(last_version, release_type)
+        prev_version = get_prev_official_release(versions)
+    print(f'Previous release version: {prev_version}')
+    next_version = get_next(prev_version, release_type)
     return next_version
