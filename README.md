@@ -18,17 +18,14 @@
     </a>
 </p>
 
-This action will automaticly determine the version for next release. Working with \<major\>.\<patch\>-dev\<increment\> version pattern
-
-Official releases will look like: 1.0, 2.0, 2.1 <br />
-Development releases will look like: 2.0-dev0, 2.0-dev1 <br />
+This action will automaticly determine the version for next release by using repository tags. For develop releases: \<major\>.\<patch\>-dev\<increment\> (e.g 2.0-dev0, 2.0-dev1), for official releases: \<major\>.\<patch\> (1.0, 2.0, 2.1).
 
 ## Action Inputes
 
-* **github_token**: Token to get tags from the repo. Pass in using `secrets.GITHUB_TOKEN`.
+* **github_token**: Token to get tags from the repo. Pass in using 'secrets.GITHUB_TOKEN'.
 * **mode**: Mode for next version calculation. Default: 'dev'. Available options:
-  * ***dev***: will increment the 'dev' version (ignoring commit message) e.g. 1.0-dev1, 1.0-dev2
-  * ***official*** try to find in commit message hastags: #major - for major version (e.g 2.0), #patch - for patch version (e.g 1.1), if no hashtag found fails.
+  * ***dev***: increment the 'dev' version (ignoring commit message) e.g. 1.0-dev1, 1.0-dev2.
+  * ***official*** search the commit message for hastags: #major - for major version (e.g 2.0), #patch - for patch version (e.g 1.1), if no hashtag found fails.
 * **suffix**: suffix for un official releases. default: 'dev'.
 
 ## Action Outputs
@@ -43,11 +40,11 @@ Development releases will look like: 2.0-dev0, 2.0-dev1 <br />
 4. Hotfix needed (official release) -> commit with '#patch' in commit message -> 1.1
 5. Continue pusing to develop branch -> 2.0-dev0 -> 2.0-dev1 -> 2.0-dev2 ...
 
-## Official version usage
+## Usage
 
 ```yaml
 - name: Auto Increment Version
-    uses: docker://igorgov/auto-inc-ver:latest
+    uses: docker://igorgov/auto-inc-ver:v1.0.0
     id: versioning
     with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -57,20 +54,4 @@ Development releases will look like: 2.0-dev0, 2.0-dev1 <br />
     shell: bash
     run: |
         echo "${{ steps.versioning.outputs.version }}"       
-```
-
-## Development version usage
-
-```yaml
-- name: Auto Increment Version
-    uses: docker://igorgov/auto-inc-ver:latest
-    id: versioning
-    with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        mode: dev  
-
-- name: Print next release version
-    shell: bash
-    run: |
-        echo "${{ steps.versioning.outputs.version }}"
 ```
