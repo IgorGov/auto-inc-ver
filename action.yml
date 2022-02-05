@@ -1,0 +1,28 @@
+name: "Auto increments release version"
+description: "Auto increments release version"
+author: "iggvrv@github.com"
+
+inputs:
+  github_token:
+    description: 'Token to get tags from the repo. Pass in using `secrets.GITHUB_TOKEN`.'
+    required: true
+  mode:
+    required: true
+    description: 'Mode for next version calculation. dev - will increment the suffix ignoring commit message (1.0-dev1, 1.0-dev2,...) official - reads from commit message #major, #patch version'
+    default: 'dev'
+  suffix:
+    required: false
+    description: 'Suffix for development releases, e.g 1.0-dev1'
+    default: 'dev'
+
+outputs:
+  version:
+    description: "The next release version"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+
+branding:
+  icon: "mic"
+  color: "purple"
