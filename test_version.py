@@ -82,3 +82,6 @@ def test_get_next_version_special_cases():
     assert str(get_next_version(prefix, tags, "patch")) == '1.3'
     
     assert str(get_next_version(prefix, tags, "major")) == '2.0'
+
+    tags = ['stable']
+    assert str(get_next_version(prefix, tags, "major")) == '0.0'

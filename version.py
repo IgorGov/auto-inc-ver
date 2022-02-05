@@ -86,6 +86,8 @@ def get_next_version(suffix: str, tags: list[str], release_type: str) -> Version
     if not tags:
         return Version(suffix, 0, 0, 0) if release_type == ReleaseTypes.INCREMENT else Version(suffix, 0, 0)
     versions = [Version.parse(tag, suffix) for tag in tags if Version.parse(tag, suffix)]
+    if not versions:
+        return Version(suffix, 0, 0, 0) if release_type == ReleaseTypes.INCREMENT else Version(suffix, 0, 0)
     if release_type == ReleaseTypes.INCREMENT:
         last_version = get_most_recent_release(versions)
     else:   
