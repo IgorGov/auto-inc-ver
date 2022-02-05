@@ -59,6 +59,8 @@ class Version:
     def __lt__(self, other) -> bool:
         if self.is_dev() and other.is_dev():
             return (self.major, self.patch, self.increment) < (other.major, other.patch, other.increment)
+        elif self.is_dev() and not other.is_dev():
+            return (self.major, self.patch) <= (other.major, other.patch)
         else:
             return (self.major, self.patch) < (other.major, other.patch)
     
@@ -92,5 +94,6 @@ def get_next_version(suffix: str, tags: list[str], release_type: str) -> Version
         last_version = get_most_recent_release(versions)
     else:   
         last_version = get_most_recent_official_release(versions)
+    print(f'most recent release version {last_version}')
     next_version = get_next(last_version, release_type)
     return next_version

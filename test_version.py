@@ -85,3 +85,10 @@ def test_get_next_version_special_cases():
 
     tags = ['stable']
     assert str(get_next_version(prefix, tags, "major")) == '0.0'
+
+def test_get_next_version_unsorted():
+    prefix = "dev"
+    tags = ['26.0', '26.0-dev0']
+
+    assert str(get_next_version(prefix, tags, "increment")) == '27.0-dev0'
+    assert str(get_next_version(prefix, tags, "major")) == '27.0'
