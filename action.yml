@@ -8,7 +8,7 @@ inputs:
     required: true
   mode:
     required: true
-    description: 'Mode for next version calculation. dev - will increment the suffix ignoring commit message (1.0-dev1, 1.0-dev2,...) official - reads from commit message #major, #patch version'
+    description: 'Mode for next version calculation. dev - will increment the suffix ignoring commit message (1.0-dev1, 1.0-dev2,...) stable - reads from commit message #major, #patch version'
     default: 'dev'
   suffix:
     required: false

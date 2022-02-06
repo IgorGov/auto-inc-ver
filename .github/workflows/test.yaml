@@ -34,9 +34,9 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       
       # - uses: ./
-      #   id: official_release
+      #   id: stable_release
       #   with:
-      #     mode: official
+      #     mode: stable
       #     suffix: 'pre'
       #     github_token: ${{ secrets.GITHUB_TOKEN }}
       

@@ -69,7 +69,7 @@ def get_prev_release(versions: list[Version]) -> Version:
     versions.sort()
     return versions[-1]
 
-def get_prev_official_release(versions: list[Version]) -> Version:
+def get_prev_stable_release(versions: list[Version]) -> Version:
     major_versions = [v for v in versions if not v.is_dev()]
     major_versions.sort()
     return major_versions[-1]
@@ -93,7 +93,7 @@ def get_next_version(suffix: str, tags: list[str], release_type: str) -> Version
     if release_type == ReleaseTypes.INCREMENT:
         prev_version = get_prev_release(versions)
     else:   
-        prev_version = get_prev_official_release(versions)
+        prev_version = get_prev_stable_release(versions)
     print(f'Previous release version: {prev_version}')
     next_version = get_next(prev_version, release_type)
     return next_version

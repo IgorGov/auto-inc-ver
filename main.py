@@ -5,7 +5,7 @@ from version import (get_next_version, ReleaseTypes)
 
 class ModeTypes:
     DEV = "dev"
-    OFFICIAL = "official"
+    STABLE = "stable"
 
 
 def get_tag_names(owner: str, repo: str, token: str) -> list[str]:
